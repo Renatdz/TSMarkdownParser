@@ -1,6 +1,6 @@
 //
 //  TSBaseParser.m
-//  TSMarkdownParser
+//  TSParser
 //
 //  Created by Antoine Cœur on 24/01/2016.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
@@ -18,15 +18,15 @@
 @interface TSExpressionBlockPair : NSObject
 
 @property (nonatomic, strong) NSRegularExpression *regularExpression;
-@property (nonatomic, strong) TSMarkdownParserMatchBlock block;
+@property (nonatomic, strong) TSParserMatchBlock block;
 
-+ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block;
++ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSParserMatchBlock)block;
 
 @end
 
 @implementation TSExpressionBlockPair
 
-+ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block {
++ (TSExpressionBlockPair *)pairWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSParserMatchBlock)block {
     TSExpressionBlockPair *pair = [TSExpressionBlockPair new];
     pair.regularExpression = regularExpression;
     pair.block = block;
@@ -55,7 +55,7 @@
 
 #pragma mark - parser definition
 
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block {
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSParserMatchBlock)block {
     @synchronized (self) {
         [self.parsingPairs addObject:[TSExpressionBlockPair pairWithRegularExpression:regularExpression block:block]];
     }
