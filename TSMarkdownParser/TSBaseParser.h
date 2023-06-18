@@ -1,6 +1,6 @@
 //
 //  TSBaseParser.h
-//  TSMarkdownParser
+//  TSParser
 //
 //  Created by Antoine Cœur on 24/01/2016.
 //  Copyright © 2016 Computertalk Sweden. All rights reserved.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
+typedef void (^TSParserMatchBlock)(NSTextCheckingResult *match, NSMutableAttributedString *attributedString);
 
 @interface TSBaseParser : NSObject
 
@@ -28,8 +28,8 @@ typedef void (^TSMarkdownParserMatchBlock)(NSTextCheckingResult *match, NSMutabl
 /// Applies markdown
 - (NSAttributedString *)attributedStringFromAttributedMarkdownString:(NSAttributedString *)attributedString;
 
-/// Adds a custom parsing rule to parser. Use `[TSMarkdownParser new]` for an empty parser.
-- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSMarkdownParserMatchBlock)block;
+/// Adds a custom parsing rule to parser. Use `[TSParser new]` for an empty parser.
+- (void)addParsingRuleWithRegularExpression:(NSRegularExpression *)regularExpression block:(TSParserMatchBlock)block;
 
 @end
 
